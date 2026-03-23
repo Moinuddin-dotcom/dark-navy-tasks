@@ -37,7 +37,8 @@ const TaskCard = ({ task, index, column, onEdit, onDelete }: TaskCardProps) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           className={cn(
-            'group rounded-lg border border-border/50 bg-card p-3 space-y-2.5 transition-all',
+            'group rounded-lg border border-border/50 p-3 space-y-2.5 transition-all',
+            columnCardBg[column],
             snapshot.isDragging && 'shadow-xl shadow-primary/10 rotate-2 scale-105',
           )}
         >
