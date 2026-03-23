@@ -29,7 +29,7 @@ const priorityLabels: Record<Priority, string> = {
   low: 'Low',
 };
 
-const TaskCard = ({ task, index, onEdit, onDelete }: TaskCardProps) => {
+const TaskCard = ({ task, index, column, onEdit, onDelete }: TaskCardProps) => {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (
