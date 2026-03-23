@@ -7,9 +7,18 @@ import { LABEL_COLORS, PRIORITY_COLORS } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+import type { Column } from '@/lib/types';
+
+const columnCardBg: Record<Column, string> = {
+  todo: 'bg-card',
+  ongoing: 'bg-[hsl(38,92%,50%,0.08)] border-[hsl(var(--priority-medium)/0.3)]',
+  completed: 'bg-[hsl(142,71%,45%,0.08)] border-[hsl(var(--priority-low)/0.3)]',
+};
+
 interface TaskCardProps {
   task: Task;
   index: number;
+  column: Column;
   onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
 }
@@ -20,7 +29,7 @@ const priorityLabels: Record<Priority, string> = {
   low: 'Low',
 };
 
-const TaskCard = ({ task, index, onEdit, onDelete }: TaskCardProps) => {
+const TaskCard = ({ task, index, column, onEdit, onDelete }: TaskCardProps) => {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (
@@ -28,7 +37,8 @@ const TaskCard = ({ task, index, onEdit, onDelete }: TaskCardProps) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           className={cn(
-            'group rounded-lg border border-border/50 bg-card p-3 space-y-2.5 transition-all',
+            'group rounded-lg border border-border/50 p-3 space-y-2.5 transition-all',
+            columnCardBg[column],
             snapshot.isDragging && 'shadow-xl shadow-primary/10 rotate-2 scale-105',
           )}
         >

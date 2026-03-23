@@ -57,6 +57,7 @@ const KanbanColumn = ({ column, tasks, onAddTask, onEditTask, onDeleteTask }: Ka
                 key={task.id}
                 task={task}
                 index={index}
+                column={column}
                 onEdit={onEditTask}
                 onDelete={onDeleteTask}
               />
