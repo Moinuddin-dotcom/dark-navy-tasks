@@ -7,9 +7,18 @@ import { LABEL_COLORS, PRIORITY_COLORS } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+import type { Column } from '@/lib/types';
+
+const columnCardBg: Record<Column, string> = {
+  todo: 'bg-card',
+  ongoing: 'bg-[hsl(38,92%,50%,0.08)] border-[hsl(var(--priority-medium)/0.3)]',
+  completed: 'bg-[hsl(142,71%,45%,0.08)] border-[hsl(var(--priority-low)/0.3)]',
+};
+
 interface TaskCardProps {
   task: Task;
   index: number;
+  column: Column;
   onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
 }
